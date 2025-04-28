@@ -14,4 +14,4 @@ To get started with this chatbot:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/kenyan-education-chatbot.git
+   git clone https://github.com/YOUR_USERNAME/simple-chatbottrial.git
