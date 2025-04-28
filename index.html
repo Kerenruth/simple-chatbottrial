@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenyan Education Chatbot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <!-- This is the body part -->
+  <div id="chat-container">
+    <div id="chat-box"></div>
+    <input type="text" id="message" placeholder="Ask me something..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <!-- JavaScript goes here -->
+  <script>
+    // your full JS code
+  </script>
+<script>
+    function appendMessage(message, sender) {
+      const chatBox = document.getElementById('chat-box');
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = sender + ": " + message;
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  
+    function welcomeMessage() {
+      appendMessage("Hello! 👋 I'm your Kenyan Education Chatbot. How can I assist you today?", "Bot");
+    }
+  
+    async function sendMessage() {
+      const messageInput = document.getElementById('message');
+      const message = messageInput.value;
+      if (message.trim() === '') return;
+  
+      appendMessage(message, "You");
+  
+      const response = await fetch('http://localhost:3000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message })
+      });
+  
+      const data = await response.json();
+      appendMessage(data.response, "Bot");
+  
+      messageInput.value = '';
+    }
+  
+    // Listen for DOM loaded fully
+    document.addEventListener('DOMContentLoaded', function() {
+      welcomeMessage();
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,8 @@
+POST http://localhost:3000/chat
+Content-Type: application/json
+
+{
+  "message":  "What is the history of Kenya?"
+}
+
+
